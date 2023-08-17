@@ -84,7 +84,8 @@ defmodule PropertySystemWeb.Router do
     post "/tenant/register", UserRegistrationController, :createtenant
 
     live "/propertys/:id", PropertyLive.Show, :show
-    
+    live "/propertys/:id/add_room", PropertyLive.Show, :add_room
+
     live "/propertys/:id/show/edit", PropertyLive.Show, :edit
     live "/maintenance_requests", Maintenance_requestLive.Index, :index
     live "/maintenance_requests/new", Maintenance_requestLive.Index, :new

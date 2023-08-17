@@ -40,7 +40,7 @@ defmodule PropertySystemWeb.RoomLive.FormComponent do
     end
   end
 
-  defp save_room(socket, :new, room_params) do
+  defp save_room(socket, :add_room, room_params) do
     IO.inspect(socket)
     # property_id = socket.assigns.property_id
     # IO.inspect(property_id)

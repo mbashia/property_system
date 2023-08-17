@@ -12,7 +12,24 @@
     />
   </.modal>
 <% end %>
-<span><%= live_patch "add Room", to: Routes.room_index_path(@socket, :new) %></span>
+
+<%= if @live_action in [:add_room] do %>
+  <.modal return_to={Routes.property_show_path(@socket, :show,@property)}>
+    <.live_component
+      module={PropertySystemWeb.RoomLive.FormComponent}
+      id={@room.id || :new}
+      title={@page_title}
+      action={@live_action}
+      property={@property}
+      room={@room}
+      return_to={Routes.property_show_path(@socket, :show,@property)}
+    />
+  </.modal>
+<% end %>
+
+
+<span><%= live_patch "add Room", to: Routes.property_show_path(@socket, :add_room , @property) %></span>
+
 
 <ul>
 
