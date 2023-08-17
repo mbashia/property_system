@@ -1,7 +1,7 @@
 defmodule PropertySystemWeb.UserRegistrationControllerTest do
   use PropertySystemWeb.ConnCase
 
-  import PropertySystem.AccouountsFixtures
+  import PropertySystem.AccountsFixtures
 
   describe "GET /users/register" do
     test "renders registration page", %{conn: conn} do

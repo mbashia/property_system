@@ -1,7 +1,7 @@
 defmodule PropertySystemWeb.UserSettingsController do
   use PropertySystemWeb, :controller
 
-  alias PropertySystem.Accouounts
+  alias PropertySystem.Accounts
   alias PropertySystemWeb.UserAuth
 
   plug :assign_email_and_password_changesets
@@ -14,9 +14,9 @@ defmodule PropertySystemWeb.UserSettingsController do
     %{"current_password" => password, "user" => user_params} = params
     user = conn.assigns.current_user
 
-    case Accouounts.apply_user_email(user, password, user_params) do
+    case Accounts.apply_user_email(user, password, user_params) do
       {:ok, applied_user} ->
-        Accouounts.deliver_update_email_instructions(
+        Accounts.deliver_update_email_instructions(
           applied_user,
           user.email,
           &Routes.user_settings_url(conn, :confirm_email, &1)
@@ -38,7 +38,7 @@ defmodule PropertySystemWeb.UserSettingsController do
     %{"current_password" => password, "user" => user_params} = params
     user = conn.assigns.current_user
 
-    case Accouounts.update_user_password(user, password, user_params) do
+    case Accounts.update_user_password(user, password, user_params) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Password updated successfully.")
@@ -51,7 +51,7 @@ defmodule PropertySystemWeb.UserSettingsController do
   end
 
   def confirm_email(conn, %{"token" => token}) do
-    case Accouounts.update_user_email(conn.assigns.current_user, token) do
+    case Accounts.update_user_email(conn.assigns.current_user, token) do
       :ok ->
         conn
         |> put_flash(:info, "Email changed successfully.")
@@ -68,7 +68,7 @@ defmodule PropertySystemWeb.UserSettingsController do
     user = conn.assigns.current_user
 
     conn
-    |> assign(:email_changeset, Accouounts.change_user_email(user))
-    |> assign(:password_changeset, Accouounts.change_user_password(user))
+    |> assign(:email_changeset, Accounts.change_user_email(user))
+    |> assign(:password_changeset, Accounts.change_user_password(user))
   end
 end

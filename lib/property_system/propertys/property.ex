@@ -9,6 +9,7 @@ defmodule PropertySystem.Propertys.Property do
     field :size, :float
     field :status, :string
     field :type, :string
+    
 
     timestamps()
   end

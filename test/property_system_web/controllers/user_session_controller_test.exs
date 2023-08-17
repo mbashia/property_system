@@ -1,7 +1,7 @@
 defmodule PropertySystemWeb.UserSessionControllerTest do
   use PropertySystemWeb.ConnCase
 
-  import PropertySystem.AccouountsFixtures
+  import PropertySystem.AccountsFixtures
 
   setup do
     %{user: user_fixture()}

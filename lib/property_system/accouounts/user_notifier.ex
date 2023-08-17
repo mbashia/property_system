@@ -1,4 +1,4 @@
-defmodule PropertySystem.Accouounts.UserNotifier do
+defmodule PropertySystem.Accounts.UserNotifier do
   import Swoosh.Email
 
   alias PropertySystem.Mailer

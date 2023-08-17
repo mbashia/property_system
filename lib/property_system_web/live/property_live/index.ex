@@ -3,11 +3,18 @@ defmodule PropertySystemWeb.PropertyLive.Index do
 
   alias PropertySystem.Propertys
   alias PropertySystem.Propertys.Property
+  alias PropertySystem.Accounts
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, :propertys, list_propertys())}
-  end
+  def mount(_params, session, socket) do
+    user = Accounts.get_user_by_session_token(session["user_token"])
+
+   {:ok,
+    socket
+    |> assign(:user, user)
+    |> assign(:propertys, Propertys.list_propertys_by_id(user.id))}
+ end
+
 
   @impl true
   def handle_params(params, _url, socket) do

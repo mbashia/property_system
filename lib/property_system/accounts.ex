@@ -1,12 +1,13 @@
-defmodule PropertySystem.Accouounts do
+defmodule PropertySystem.Accounts do
   @moduledoc """
-  The Accouounts context.
+  The Accounts context.
   """
+
 
   import Ecto.Query, warn: false
   alias PropertySystem.Repo
 
-  alias PropertySystem.Accouounts.{User, UserToken, UserNotifier}
+  alias PropertySystem.Accounts.{User, UserToken, UserNotifier}
 
   ## Database getters
 

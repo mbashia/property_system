@@ -1,8 +1,8 @@
 defmodule PropertySystemWeb.UserSettingsControllerTest do
   use PropertySystemWeb.ConnCase
 
-  alias PropertySystem.Accouounts
-  import PropertySystem.AccouountsFixtures
+  alias PropertySystem.Accounts
+  import PropertySystem.AccountsFixtures
 
   setup :register_and_log_in_user
 
@@ -35,7 +35,7 @@ defmodule PropertySystemWeb.UserSettingsControllerTest do
       assert redirected_to(new_password_conn) == Routes.user_settings_path(conn, :edit)
       assert get_session(new_password_conn, :user_token) != get_session(conn, :user_token)
       assert get_flash(new_password_conn, :info) =~ "Password updated successfully"
-      assert Accouounts.get_user_by_email_and_password(user.email, "new valid password")
+      assert Accounts.get_user_by_email_and_password(user.email, "new valid password")
     end
 
     test "does not update password on invalid data", %{conn: conn} do
@@ -71,7 +71,7 @@ defmodule PropertySystemWeb.UserSettingsControllerTest do
 
       assert redirected_to(conn) == Routes.user_settings_path(conn, :edit)
       assert get_flash(conn, :info) =~ "A link to confirm your email"
-      assert Accouounts.get_user_by_email(user.email)
+      assert Accounts.get_user_by_email(user.email)
     end
 
     test "does not update email on invalid data", %{conn: conn} do
@@ -95,7 +95,7 @@ defmodule PropertySystemWeb.UserSettingsControllerTest do
 
       token =
         extract_user_token(fn url ->
-          Accouounts.deliver_update_email_instructions(%{user | email: email}, user.email, url)
+          Accounts.deliver_update_email_instructions(%{user | email: email}, user.email, url)
         end)
 
       %{token: token, email: email}
@@ -105,8 +105,8 @@ defmodule PropertySystemWeb.UserSettingsControllerTest do
       conn = get(conn, Routes.user_settings_path(conn, :confirm_email, token))
       assert redirected_to(conn) == Routes.user_settings_path(conn, :edit)
       assert get_flash(conn, :info) =~ "Email changed successfully"
-      refute Accouounts.get_user_by_email(user.email)
-      assert Accouounts.get_user_by_email(email)
+      refute Accounts.get_user_by_email(user.email)
+      assert Accounts.get_user_by_email(email)
 
       conn = get(conn, Routes.user_settings_path(conn, :confirm_email, token))
       assert redirected_to(conn) == Routes.user_settings_path(conn, :edit)
@@ -117,7 +117,7 @@ defmodule PropertySystemWeb.UserSettingsControllerTest do
       conn = get(conn, Routes.user_settings_path(conn, :confirm_email, "oops"))
       assert redirected_to(conn) == Routes.user_settings_path(conn, :edit)
       assert get_flash(conn, :error) =~ "Email change link is invalid or it has expired"
-      assert Accouounts.get_user_by_email(user.email)
+      assert Accounts.get_user_by_email(user.email)
     end
 
     test "redirects if user is not logged in", %{token: token} do

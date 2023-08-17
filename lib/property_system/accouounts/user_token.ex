@@ -1,7 +1,7 @@
-defmodule PropertySystem.Accouounts.UserToken do
+defmodule PropertySystem.Accounts.UserToken do
   use Ecto.Schema
   import Ecto.Query
-  alias PropertySystem.Accouounts.UserToken
+  alias PropertySystem.Accounts.UserToken
 
   @hash_algorithm :sha256
   @rand_size 32
@@ -17,7 +17,7 @@ defmodule PropertySystem.Accouounts.UserToken do
     field :token, :binary
     field :context, :string
     field :sent_to, :string
-    belongs_to :user, PropertySystem.Accouounts.User
+    belongs_to :user, PropertySystem.Accounts.User
 
     timestamps(updated_at: false)
   end

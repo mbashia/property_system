@@ -46,7 +46,7 @@ defmodule PropertySystemWeb.ConnCase do
   test context.
   """
   def register_and_log_in_user(%{conn: conn}) do
-    user = PropertySystem.AccouountsFixtures.user_fixture()
+    user = PropertySystem.AccountsFixtures.user_fixture()
     %{conn: log_in_user(conn, user), user: user}
   end
 
@@ -56,7 +56,7 @@ defmodule PropertySystemWeb.ConnCase do
   It returns an updated `conn`.
   """
   def log_in_user(conn, user) do
-    token = PropertySystem.Accouounts.generate_user_session_token(user)
+    token = PropertySystem.Accounts.generate_user_session_token(user)
 
     conn
     |> Phoenix.ConnTest.init_test_session(%{})
