@@ -1,0 +1,43 @@
+<h1>Listing Maintenance requests</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.maintenance_request_index_path(@socket, :index)}>
+    <.live_component
+      module={PropertySystemWeb.Maintenance_requestLive.FormComponent}
+      id={@maintenance_request.id || :new}
+      title={@page_title}
+      action={@live_action}
+      maintenance_request={@maintenance_request}
+      return_to={Routes.maintenance_request_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Request date</th>
+      <th>Description</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="maintenance_requests">
+    <%= for maintenance_request <- @maintenance_requests do %>
+      <tr id={"maintenance_request-#{maintenance_request.id}"}>
+        <td><%= maintenance_request.request_date %></td>
+        <td><%= maintenance_request.description %></td>
+        <td><%= maintenance_request.status %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.maintenance_request_show_path(@socket, :show, maintenance_request) %></span>
+          <span><%= live_patch "Edit", to: Routes.maintenance_request_index_path(@socket, :edit, maintenance_request) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: maintenance_request.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Maintenance request", to: Routes.maintenance_request_index_path(@socket, :new) %></span>

@@ -1,0 +1,49 @@
+<h1>Listing Propertys</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.property_index_path(@socket, :index)}>
+    <.live_component
+      module={PropertySystemWeb.PropertyLive.FormComponent}
+      id={@property.id || :new}
+      title={@page_title}
+      action={@live_action}
+      property={@property}
+      return_to={Routes.property_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Size</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="propertys">
+    <%= for property <- @propertys do %>
+      <tr id={"property-#{property.id}"}>
+        <td><%= property.name %></td>
+        <td><%= property.address %></td>
+        <td><%= property.type %></td>
+        <td><%= property.status %></td>
+        <td><%= property.size %></td>
+        <td><%= property.description %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.property_show_path(@socket, :show, property) %></span>
+          <span><%= live_patch "Edit", to: Routes.property_index_path(@socket, :edit, property) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: property.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Property", to: Routes.property_index_path(@socket, :new) %></span>

@@ -1,0 +1,36 @@
+<h1>Show Maintenance request</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.maintenance_request_show_path(@socket, :show, @maintenance_request)}>
+    <.live_component
+      module={PropertySystemWeb.Maintenance_requestLive.FormComponent}
+      id={@maintenance_request.id}
+      title={@page_title}
+      action={@live_action}
+      maintenance_request={@maintenance_request}
+      return_to={Routes.maintenance_request_show_path(@socket, :show, @maintenance_request)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Request date:</strong>
+    <%= @maintenance_request.request_date %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @maintenance_request.description %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @maintenance_request.status %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.maintenance_request_show_path(@socket, :edit, @maintenance_request), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.maintenance_request_index_path(@socket, :index) %></span>
