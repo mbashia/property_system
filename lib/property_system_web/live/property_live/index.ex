@@ -12,7 +12,7 @@ defmodule PropertySystemWeb.PropertyLive.Index do
    {:ok,
     socket
     |> assign(:user, user)
-    |> assign(:propertys, Propertys.list_propertys_by_id(user.id))}
+    |> assign(:propertys, Propertys.list_propertys())}
  end
 
 

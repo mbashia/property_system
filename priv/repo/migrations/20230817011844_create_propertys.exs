@@ -9,6 +9,7 @@ defmodule PropertySystem.Repo.Migrations.CreatePropertys do
       add :status, :string
       add :size, :float
       add :description, :text
+      add :user_id, :integer
 
       timestamps()
     end

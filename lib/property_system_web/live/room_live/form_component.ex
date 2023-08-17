@@ -41,6 +41,9 @@ defmodule PropertySystemWeb.RoomLive.FormComponent do
   end
 
   defp save_room(socket, :new, room_params) do
+    IO.inspect(socket)
+    # property_id = socket.assigns.property_id
+    # IO.inspect(property_id)
     case Rooms.create_room(room_params) do
       {:ok, _room} ->
         {:noreply,

@@ -62,9 +62,9 @@ defmodule PropertySystemWeb.Router do
 
   scope "/", PropertySystemWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
-
     get "/users/register", UserRegistrationController, :new
     post "/users/register", UserRegistrationController, :create
+
     get "/users/log_in", UserSessionController, :new
     post "/users/log_in", UserSessionController, :create
     get "/users/reset_password", UserResetPasswordController, :new
@@ -78,8 +78,13 @@ defmodule PropertySystemWeb.Router do
     live "/propertys", PropertyLive.Index, :index
     live "/propertys/new", PropertyLive.Index, :new
     live "/propertys/:id/edit", PropertyLive.Index, :edit
+    get "/manager/register", UserRegistrationController, :newmanager
+    post "/manager/register", UserRegistrationController, :createmanager
+    get "/tenant/register", UserRegistrationController, :newtenant
+    post "/tenant/register", UserRegistrationController, :createtenant
 
     live "/propertys/:id", PropertyLive.Show, :show
+    
     live "/propertys/:id/show/edit", PropertyLive.Show, :edit
     live "/maintenance_requests", Maintenance_requestLive.Index, :index
     live "/maintenance_requests/new", Maintenance_requestLive.Index, :new
