@@ -5,8 +5,10 @@
     id="room-form"
     phx-target={@myself}
     phx-submit="save"
+    phx-change = "validate"
    >
-  
+
+
   <%= label f, :email %>
   <%= email_input f, :email, required: true %>
   <%= error_tag f, :email %>

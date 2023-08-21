@@ -6,7 +6,6 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
 
   def update(%{user: user}=assigns, socket) do
     tenant_changeset = Accounts.change_user_registration(user)
-    IO.inspect(tenant_changeset)
     {:ok,
      socket
      |> assign(assigns)
@@ -21,7 +20,6 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
         ) :: {:noreply, atom | map}
   def handle_event("save", %{"user" => user_params}, socket) do
     room =socket.assigns.room
-    IO.inspect(room.room_name)
     user_params = Map.put(user_params, "role", "tenant")
 
     case Accounts.register_user(user_params) do
@@ -30,23 +28,25 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
         tenant_params = %{"user_id"=> user.id,"room_id"=>room.id, "room_name"=>room.room_name}
          Tenants.create_entry(tenant_params)
           IO.write("already passed")
-          IO.inspect(socket)
           {:noreply,
           socket
           |> put_flash(:info, "Tenant successfully")
           |> push_redirect(to: socket.assigns.return_to)}
 
-
-    end
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, changeset: changeset)}
+end
 
 
   end
   def handle_event("validate", %{"user" => user_params}, socket) do
+    IO.inspect(socket.assigns.user)
     changeset =
       socket.assigns.user
       |>Accounts.change_user_registration(user_params)
       |> Map.put(:action, :validate)
-
+      IO.write("here is the changeset")
+      IO.inspect(changeset)
     {:noreply, assign(socket, :changeset, changeset)}
   end
 end
