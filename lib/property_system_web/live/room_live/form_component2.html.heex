@@ -1,0 +1,22 @@
+<div><h5>wazaa</h5>
+ <.form
+    let={f}
+    for={@tenant_changeset}
+    id="room-form"
+    phx-target={@myself}
+    phx-submit="save"
+   >
+  
+  <%= label f, :email %>
+  <%= email_input f, :email, required: true %>
+  <%= error_tag f, :email %>
+
+  <%= label f, :password %>
+  <%= password_input f, :password, required: true %>
+  <%= error_tag f, :password %>
+<div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+  </div>
+

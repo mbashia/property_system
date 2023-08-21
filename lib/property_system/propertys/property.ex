@@ -2,6 +2,7 @@ defmodule PropertySystem.Propertys.Property do
   use Ecto.Schema
   import Ecto.Changeset
   alias PropertySystem.Accounts.User
+  alias PropertySystem.Rooms.Room
 
   schema "propertys" do
     field :address, :string
@@ -10,9 +11,8 @@ defmodule PropertySystem.Propertys.Property do
     field :size, :float
     field :status, :string
     field :type, :string
-    belongs_to :user, User, foreign_key:  :user_id
-
-
+    belongs_to :user, User, foreign_key: :user_id
+    has_many :rooms, Room
 
     timestamps()
   end

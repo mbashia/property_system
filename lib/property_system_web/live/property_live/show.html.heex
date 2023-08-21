@@ -17,7 +17,7 @@
   <.modal return_to={Routes.property_show_path(@socket, :show,@property)}>
     <.live_component
       module={PropertySystemWeb.RoomLive.FormComponent}
-      id={@room.id || :new}
+      id={@room.id || :add_room}
       title={@page_title}
       action={@live_action}
       property={@property}
@@ -28,7 +28,7 @@
 <% end %>
 
 
-<span><%= live_patch "add Room", to: Routes.property_show_path(@socket, :add_room , @property) %></span>
+<span><%= live_patch "add Room", to: Routes.property_show_path(@socket, :add_room , @property.id) %></span>
 
 
 <ul>

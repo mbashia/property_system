@@ -4,8 +4,22 @@ defmodule PropertySystemWeb.PropertyLiveTest do
   import Phoenix.LiveViewTest
   import PropertySystem.PropertysFixtures
 
-  @create_attrs %{address: "some address", description: "some description", name: "some name", size: 120.5, status: "some status", type: "some type"}
-  @update_attrs %{address: "some updated address", description: "some updated description", name: "some updated name", size: 456.7, status: "some updated status", type: "some updated type"}
+  @create_attrs %{
+    address: "some address",
+    description: "some description",
+    name: "some name",
+    size: 120.5,
+    status: "some status",
+    type: "some type"
+  }
+  @update_attrs %{
+    address: "some updated address",
+    description: "some updated description",
+    name: "some updated name",
+    size: 456.7,
+    status: "some updated status",
+    type: "some updated type"
+  }
   @invalid_attrs %{address: nil, description: nil, name: nil, size: nil, status: nil, type: nil}
 
   defp create_property(_) do

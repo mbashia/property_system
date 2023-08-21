@@ -21,8 +21,6 @@ defmodule PropertySystemWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-
-
   end
 
   # Other scopes may use custom stacks.
@@ -99,6 +97,7 @@ defmodule PropertySystemWeb.Router do
 
     live "/rooms/:id", RoomLive.Show, :show
     live "/rooms/:id/show/edit", RoomLive.Show, :edit
+    live "/rooms/:id/add_tenant", RoomLive.Show, :add_tenant
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update

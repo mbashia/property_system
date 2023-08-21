@@ -1,4 +1,5 @@
 <h1>Show Room</h1>
+<span><%= live_patch "add tenant", to: Routes.room_show_path(@socket, :add_tenant,@room.id) %></span>
 
 <%= if @live_action in [:edit] do %>
   <.modal return_to={Routes.room_show_path(@socket, :show, @room)}>
@@ -12,12 +13,27 @@
     />
   </.modal>
 <% end %>
+<%= if @live_action in [:add_tenant] do %>
+  <.modal return_to={Routes.room_show_path(@socket, :show, @room)}>
+    <.live_component
+      module={PropertySystemWeb.RoomLive.FormComponent2}
+      id={@room.id}
+      title={@page_title}
+      action={@live_action}
+      room={@room}
+      user = {@user}
+      
+
+      return_to={Routes.room_show_path(@socket, :show, @room)}
+    />
+  </.modal>
+<% end %>
 
 <ul>
 
   <li>
     <strong>Room number:</strong>
-    <%= @room.room_number %>
+    <%= @room.room_name %>
   </li>
 
   <li>

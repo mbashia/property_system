@@ -2,6 +2,7 @@ defmodule PropertySystemWeb.RoomLive.Show do
   use PropertySystemWeb, :live_view
 
   alias PropertySystem.Rooms
+  alias PropertySystem.Accounts.User
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,9 +14,11 @@ defmodule PropertySystemWeb.RoomLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:room, Rooms.get_room!(id))}
+     |> assign(:room, Rooms.get_room!(id))
+    |>assign(:user,%User{})}
   end
 
   defp page_title(:show), do: "Show Room"
   defp page_title(:edit), do: "Edit Room"
+  defp page_title(:add_tenant), do: "add_tenant"
 end

@@ -5,7 +5,7 @@ defmodule PropertySystem.Repo.Migrations.CreateUsersAuthTables do
     create table(:users) do
       add :email, :string, null: false, size: 160
       add :hashed_password, :string, null: false
-      add :role,:string
+      add :role, :string
       add :confirmed_at, :naive_datetime
       timestamps()
     end

@@ -4,8 +4,16 @@ defmodule PropertySystemWeb.Maintenance_requestLiveTest do
   import Phoenix.LiveViewTest
   import PropertySystem.Maintenance_requestsFixtures
 
-  @create_attrs %{description: "some description", request_date: %{day: 16, month: 8, year: 2023}, status: "some status"}
-  @update_attrs %{description: "some updated description", request_date: %{day: 17, month: 8, year: 2023}, status: "some updated status"}
+  @create_attrs %{
+    description: "some description",
+    request_date: %{day: 16, month: 8, year: 2023},
+    status: "some status"
+  }
+  @update_attrs %{
+    description: "some updated description",
+    request_date: %{day: 17, month: 8, year: 2023},
+    status: "some updated status"
+  }
   @invalid_attrs %{description: nil, request_date: %{day: 30, month: 2, year: 2023}, status: nil}
 
   defp create_maintenance_request(_) do
@@ -45,13 +53,21 @@ defmodule PropertySystemWeb.Maintenance_requestLiveTest do
       assert html =~ "some description"
     end
 
-    test "updates maintenance_request in listing", %{conn: conn, maintenance_request: maintenance_request} do
+    test "updates maintenance_request in listing", %{
+      conn: conn,
+      maintenance_request: maintenance_request
+    } do
       {:ok, index_live, _html} = live(conn, Routes.maintenance_request_index_path(conn, :index))
 
-      assert index_live |> element("#maintenance_request-#{maintenance_request.id} a", "Edit") |> render_click() =~
+      assert index_live
+             |> element("#maintenance_request-#{maintenance_request.id} a", "Edit")
+             |> render_click() =~
                "Edit Maintenance request"
 
-      assert_patch(index_live, Routes.maintenance_request_index_path(conn, :edit, maintenance_request))
+      assert_patch(
+        index_live,
+        Routes.maintenance_request_index_path(conn, :edit, maintenance_request)
+      )
 
       assert index_live
              |> form("#maintenance_request-form", maintenance_request: @invalid_attrs)
@@ -67,10 +83,16 @@ defmodule PropertySystemWeb.Maintenance_requestLiveTest do
       assert html =~ "some updated description"
     end
 
-    test "deletes maintenance_request in listing", %{conn: conn, maintenance_request: maintenance_request} do
+    test "deletes maintenance_request in listing", %{
+      conn: conn,
+      maintenance_request: maintenance_request
+    } do
       {:ok, index_live, _html} = live(conn, Routes.maintenance_request_index_path(conn, :index))
 
-      assert index_live |> element("#maintenance_request-#{maintenance_request.id} a", "Delete") |> render_click()
+      assert index_live
+             |> element("#maintenance_request-#{maintenance_request.id} a", "Delete")
+             |> render_click()
+
       refute has_element?(index_live, "#maintenance_request-#{maintenance_request.id}")
     end
   end
@@ -79,19 +101,27 @@ defmodule PropertySystemWeb.Maintenance_requestLiveTest do
     setup [:create_maintenance_request]
 
     test "displays maintenance_request", %{conn: conn, maintenance_request: maintenance_request} do
-      {:ok, _show_live, html} = live(conn, Routes.maintenance_request_show_path(conn, :show, maintenance_request))
+      {:ok, _show_live, html} =
+        live(conn, Routes.maintenance_request_show_path(conn, :show, maintenance_request))
 
       assert html =~ "Show Maintenance request"
       assert html =~ maintenance_request.description
     end
 
-    test "updates maintenance_request within modal", %{conn: conn, maintenance_request: maintenance_request} do
-      {:ok, show_live, _html} = live(conn, Routes.maintenance_request_show_path(conn, :show, maintenance_request))
+    test "updates maintenance_request within modal", %{
+      conn: conn,
+      maintenance_request: maintenance_request
+    } do
+      {:ok, show_live, _html} =
+        live(conn, Routes.maintenance_request_show_path(conn, :show, maintenance_request))
 
       assert show_live |> element("a", "Edit") |> render_click() =~
                "Edit Maintenance request"
 
-      assert_patch(show_live, Routes.maintenance_request_show_path(conn, :edit, maintenance_request))
+      assert_patch(
+        show_live,
+        Routes.maintenance_request_show_path(conn, :edit, maintenance_request)
+      )
 
       assert show_live
              |> form("#maintenance_request-form", maintenance_request: @invalid_attrs)
@@ -101,7 +131,10 @@ defmodule PropertySystemWeb.Maintenance_requestLiveTest do
         show_live
         |> form("#maintenance_request-form", maintenance_request: @update_attrs)
         |> render_submit()
-        |> follow_redirect(conn, Routes.maintenance_request_show_path(conn, :show, maintenance_request))
+        |> follow_redirect(
+          conn,
+          Routes.maintenance_request_show_path(conn, :show, maintenance_request)
+        )
 
       assert html =~ "Maintenance request updated successfully"
       assert html =~ "some updated description"

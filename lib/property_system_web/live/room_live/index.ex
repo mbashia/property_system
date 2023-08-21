@@ -5,8 +5,11 @@ defmodule PropertySystemWeb.RoomLive.Index do
   alias PropertySystem.Rooms.Room
 
   @impl true
+
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :rooms, list_rooms())}
+    {:ok,
+     socket
+     |> assign(:rooms, list_rooms())}
   end
 
   @impl true

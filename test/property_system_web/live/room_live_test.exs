@@ -4,9 +4,30 @@ defmodule PropertySystemWeb.RoomLiveTest do
   import Phoenix.LiveViewTest
   import PropertySystem.RoomsFixtures
 
-  @create_attrs %{description: "some description", floor_number: 42, rent_amount: 120.5, room_number: 42, size: 120.5, status: "some status"}
-  @update_attrs %{description: "some updated description", floor_number: 43, rent_amount: 456.7, room_number: 43, size: 456.7, status: "some updated status"}
-  @invalid_attrs %{description: nil, floor_number: nil, rent_amount: nil, room_number: nil, size: nil, status: nil}
+  @create_attrs %{
+    description: "some description",
+    floor_number: 42,
+    rent_amount: 120.5,
+    room_number: 42,
+    size: 120.5,
+    status: "some status"
+  }
+  @update_attrs %{
+    description: "some updated description",
+    floor_number: 43,
+    rent_amount: 456.7,
+    room_number: 43,
+    size: 456.7,
+    status: "some updated status"
+  }
+  @invalid_attrs %{
+    description: nil,
+    floor_number: nil,
+    rent_amount: nil,
+    room_number: nil,
+    size: nil,
+    status: nil
+  }
 
   defp create_room(_) do
     room = room_fixture()

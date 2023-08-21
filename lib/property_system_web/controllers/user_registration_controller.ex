@@ -21,7 +21,6 @@ defmodule PropertySystemWeb.UserRegistrationController do
   end
 
   def create(conn, %{"user" => user_params}) do
-
     user_params = Map.put(user_params, "role", "landlord")
 
     case Accounts.register_user(user_params) do
@@ -45,8 +44,7 @@ defmodule PropertySystemWeb.UserRegistrationController do
     user_params = Map.put(user_params, "role", "tenant")
 
     case Accounts.register_user(user_params) do
-      {:ok, user} ->
-
+      {:ok, _user} ->
         conn
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: "/")
@@ -57,12 +55,10 @@ defmodule PropertySystemWeb.UserRegistrationController do
   end
 
   def createmanager(conn, %{"user" => user_params}) do
-     user_params = Map.put(user_params, "role", "manager")
+    user_params = Map.put(user_params, "role", "manager")
 
     case Accounts.register_user(user_params) do
       {:ok, _user} ->
-
-
         conn
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: "/")
@@ -71,5 +67,4 @@ defmodule PropertySystemWeb.UserRegistrationController do
         render(conn, "manager.html", changeset: changeset)
     end
   end
-
 end

@@ -28,7 +28,10 @@ defmodule PropertySystemWeb.Maintenance_requestLive.FormComponent do
   end
 
   defp save_maintenance_request(socket, :edit, maintenance_request_params) do
-    case Maintenance_requests.update_maintenance_request(socket.assigns.maintenance_request, maintenance_request_params) do
+    case Maintenance_requests.update_maintenance_request(
+           socket.assigns.maintenance_request,
+           maintenance_request_params
+         ) do
       {:ok, _maintenance_request} ->
         {:noreply,
          socket

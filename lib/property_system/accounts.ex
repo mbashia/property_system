@@ -3,7 +3,6 @@ defmodule PropertySystem.Accounts do
   The Accounts context.
   """
 
-
   import Ecto.Query, warn: false
   alias PropertySystem.Repo
 

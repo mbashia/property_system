@@ -8,7 +8,14 @@ defmodule PropertySystem.RoomsTest do
 
     import PropertySystem.RoomsFixtures
 
-    @invalid_attrs %{description: nil, floor_number: nil, rent_amount: nil, room_number: nil, size: nil, status: nil}
+    @invalid_attrs %{
+      description: nil,
+      floor_number: nil,
+      rent_amount: nil,
+      room_number: nil,
+      size: nil,
+      status: nil
+    }
 
     test "list_rooms/0 returns all rooms" do
       room = room_fixture()
@@ -21,7 +28,14 @@ defmodule PropertySystem.RoomsTest do
     end
 
     test "create_room/1 with valid data creates a room" do
-      valid_attrs = %{description: "some description", floor_number: 42, rent_amount: 120.5, room_number: 42, size: 120.5, status: "some status"}
+      valid_attrs = %{
+        description: "some description",
+        floor_number: 42,
+        rent_amount: 120.5,
+        room_number: 42,
+        size: 120.5,
+        status: "some status"
+      }
 
       assert {:ok, %Room{} = room} = Rooms.create_room(valid_attrs)
       assert room.description == "some description"
@@ -38,7 +52,15 @@ defmodule PropertySystem.RoomsTest do
 
     test "update_room/2 with valid data updates the room" do
       room = room_fixture()
-      update_attrs = %{description: "some updated description", floor_number: 43, rent_amount: 456.7, room_number: 43, size: 456.7, status: "some updated status"}
+
+      update_attrs = %{
+        description: "some updated description",
+        floor_number: 43,
+        rent_amount: 456.7,
+        room_number: 43,
+        size: 456.7,
+        status: "some updated status"
+      }
 
       assert {:ok, %Room{} = room} = Rooms.update_room(room, update_attrs)
       assert room.description == "some updated description"

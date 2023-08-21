@@ -29,7 +29,7 @@
   <tbody id="rooms">
     <%= for room <- @rooms do %>
       <tr id={"room-#{room.id}"}>
-        <td><%= room.room_number %></td>
+        <td><%= room.room_name %></td>
         <td><%= room.rent_amount %></td>
         <td><%= room.size %></td>
         <td><%= room.description %></td>

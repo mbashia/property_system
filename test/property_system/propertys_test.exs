@@ -21,7 +21,14 @@ defmodule PropertySystem.PropertysTest do
     end
 
     test "create_property/1 with valid data creates a property" do
-      valid_attrs = %{address: "some address", description: "some description", name: "some name", size: 120.5, status: "some status", type: "some type"}
+      valid_attrs = %{
+        address: "some address",
+        description: "some description",
+        name: "some name",
+        size: 120.5,
+        status: "some status",
+        type: "some type"
+      }
 
       assert {:ok, %Property{} = property} = Propertys.create_property(valid_attrs)
       assert property.address == "some address"
@@ -38,7 +45,15 @@ defmodule PropertySystem.PropertysTest do
 
     test "update_property/2 with valid data updates the property" do
       property = property_fixture()
-      update_attrs = %{address: "some updated address", description: "some updated description", name: "some updated name", size: 456.7, status: "some updated status", type: "some updated type"}
+
+      update_attrs = %{
+        address: "some updated address",
+        description: "some updated description",
+        name: "some updated name",
+        size: 456.7,
+        status: "some updated status",
+        type: "some updated type"
+      }
 
       assert {:ok, %Property{} = property} = Propertys.update_property(property, update_attrs)
       assert property.address == "some updated address"
