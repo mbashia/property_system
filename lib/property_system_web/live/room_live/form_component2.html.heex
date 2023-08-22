@@ -12,7 +12,7 @@
 
   <%= label f, :email %>
   <%= email_input f, :email, required: true %>
-  <div><%=@email_error%></div>
+  <div style="color:red;"><%=@email_error%></div>
 
   <%= label f, :password %>
   <%= password_input f, :password, required: true %>

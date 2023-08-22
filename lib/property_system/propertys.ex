@@ -20,7 +20,11 @@ defmodule PropertySystem.Propertys do
   def list_propertys do
     Repo.all(Property)
   end
+  def list_propertys_by_id(id) do
+    Repo.all(from p in Property, where: p.user_id == ^id)
 
+
+  end
   @doc """
   Gets a single property.
 

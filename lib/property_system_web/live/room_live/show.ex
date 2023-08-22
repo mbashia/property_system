@@ -19,7 +19,7 @@ defmodule PropertySystemWeb.RoomLive.Show do
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
      |> assign(:room, Rooms.get_room!(id))
-    |>assign(:user,%User{})}
+     |> assign(:user, %User{})}
   end
 
   defp page_title(:show), do: "Show Room"

@@ -6,6 +6,7 @@ defmodule PropertySystemWeb.RoomLive.FormComponent do
   @impl true
   def update(%{room: room} = assigns, socket) do
     changeset = Rooms.change_room(room)
+
     {:ok,
      socket
      |> assign(assigns)
@@ -19,6 +20,7 @@ defmodule PropertySystemWeb.RoomLive.FormComponent do
       socket.assigns.room
       |> Rooms.change_room(room_params)
       |> Map.put(:action, :validate)
+
     {:noreply, assign(socket, :changeset, changeset)}
   end
 
@@ -43,6 +45,7 @@ defmodule PropertySystemWeb.RoomLive.FormComponent do
     # property_id = socket.assigns.property_id
     # IO.inspect(property_id)
     room_params = Map.put(room_params, "property_id", socket.assigns.property.id)
+
     case Rooms.create_room(room_params) do
       {:ok, _room} ->
         {:noreply,

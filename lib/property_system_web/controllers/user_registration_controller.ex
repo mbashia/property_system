@@ -10,15 +10,7 @@ defmodule PropertySystemWeb.UserRegistrationController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def newtenant(conn, _params) do
-    changeset = Accounts.change_user_registration(%User{})
-    render(conn, "tenant.html", changeset: changeset)
-  end
 
-  def newmanager(conn, _params) do
-    changeset = Accounts.change_user_registration(%User{})
-    render(conn, "manager.html", changeset: changeset)
-  end
 
   def create(conn, %{"user" => user_params}) do
     user_params = Map.put(user_params, "role", "landlord")
@@ -40,31 +32,5 @@ defmodule PropertySystemWeb.UserRegistrationController do
     end
   end
 
-  def createtenant(conn, %{"user" => user_params}) do
-    user_params = Map.put(user_params, "role", "tenant")
 
-    case Accounts.register_user(user_params) do
-      {:ok, _user} ->
-        conn
-        |> put_flash(:info, "User created successfully.")
-        |> redirect(to: "/")
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "tenant.html", changeset: changeset)
-    end
-  end
-
-  def createmanager(conn, %{"user" => user_params}) do
-    user_params = Map.put(user_params, "role", "manager")
-
-    case Accounts.register_user(user_params) do
-      {:ok, _user} ->
-        conn
-        |> put_flash(:info, "User created successfully.")
-        |> redirect(to: "/")
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "manager.html", changeset: changeset)
-    end
-  end
 end

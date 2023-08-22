@@ -14,6 +14,6 @@ defmodule PropertySystem.Tenants.Tenant do
   def changeset(tenant, attrs) do
     tenant
     |> cast(attrs, [:user_id, :room_id, :room_name])
-    |> validate_required([:user_id, :room_id,:room_name])
+    |> validate_required([:user_id, :room_id, :room_name])
   end
 end

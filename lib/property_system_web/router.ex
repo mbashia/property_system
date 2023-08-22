@@ -76,11 +76,7 @@ defmodule PropertySystemWeb.Router do
     live "/propertys", PropertyLive.Index, :index
     live "/propertys/new", PropertyLive.Index, :new
     live "/propertys/:id/edit", PropertyLive.Index, :edit
-    get "/manager/register", UserRegistrationController, :newmanager
-    post "/manager/register", UserRegistrationController, :createmanager
-    get "/tenant/register", UserRegistrationController, :newtenant
-    post "/tenant/register", UserRegistrationController, :createtenant
-
+   
     live "/propertys/:id", PropertyLive.Show, :show
     live "/propertys/:id/add_room", PropertyLive.Show, :add_room
 

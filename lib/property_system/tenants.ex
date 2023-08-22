@@ -9,6 +9,7 @@ defmodule PropertySystem.Tenants do
     |> Tenant.changeset(attrs)
     |> Repo.insert()
   end
+
   def change_tenant(%Tenant{} = tenant, attrs \\ %{}) do
     Tenant.changeset(tenant, attrs)
   end

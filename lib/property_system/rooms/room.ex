@@ -37,6 +37,5 @@ defmodule PropertySystem.Rooms.Room do
       :floor_number,
       :property_id
     ])
-
   end
 end
