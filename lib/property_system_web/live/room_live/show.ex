@@ -10,6 +10,10 @@ defmodule PropertySystemWeb.RoomLive.Show do
   end
 
   @impl true
+  @spec handle_params(map, any, %{
+          :assigns => atom | %{:live_action => :add_tenant | :edit | :show, optional(any) => any},
+          optional(any) => any
+        }) :: {:noreply, map}
   def handle_params(%{"id" => id}, _, socket) do
     {:noreply,
      socket
@@ -20,5 +24,5 @@ defmodule PropertySystemWeb.RoomLive.Show do
 
   defp page_title(:show), do: "Show Room"
   defp page_title(:edit), do: "Edit Room"
-  defp page_title(:add_tenant), do: "add_tenant"
+  defp page_title(:add_tenant), do: "add tenant"
 end

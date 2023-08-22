@@ -26,8 +26,8 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
       {:ok, user} ->
 
         tenant_params = %{"user_id"=> user.id,"room_id"=>room.id, "room_name"=>room.room_name}
-         Tenants.create_entry(tenant_params)
-          IO.write("already passed")
+        case  Tenants.create_entry(tenant_params) do
+          {:ok,_params} ->
           {:noreply,
           socket
           |> put_flash(:info, "Tenant successfully")
@@ -35,6 +35,7 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, changeset: changeset)}
+end
 end
 
 
