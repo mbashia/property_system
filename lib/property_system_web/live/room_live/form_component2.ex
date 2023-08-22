@@ -6,18 +6,16 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
 
   def update(%{user: user}=assigns, socket) do
     tenant_changeset = Accounts.change_user_registration(user)
+
     {:ok,
      socket
      |> assign(assigns)
-     |> assign(:tenant_changeset, tenant_changeset)}
+     |> assign(:tenant_changeset, tenant_changeset)
+    |>assign(:email_error, "")
+    |>assign(:disable_save, :false)}
   end
 
-  @spec handle_event(
-          <<_::32, _::_*32>>,
-          map,
-          atom
-          | %{:assigns => atom | %{:room => any, optional(any) => any}, optional(any) => any}
-        ) :: {:noreply, atom | map}
+
   def handle_event("save", %{"user" => user_params}, socket) do
     room =socket.assigns.room
     user_params = Map.put(user_params, "role", "tenant")
@@ -34,6 +32,7 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
           |> push_redirect(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
+
         {:noreply, assign(socket, changeset: changeset)}
 end
 end
@@ -41,13 +40,21 @@ end
 
   end
   def handle_event("validate", %{"user" => user_params}, socket) do
-    IO.inspect(socket.assigns.user)
+
+    IO.inspect(user_params["email"])
     changeset =
       socket.assigns.user
       |>Accounts.change_user_registration(user_params)
       |> Map.put(:action, :validate)
-      IO.write("here is the changeset")
-      IO.inspect(changeset)
-    {:noreply, assign(socket, :changeset, changeset)}
+      emails = Accounts.get_emails()
+      user_email =  user_params["email"]
+      email_error =  if user_email in emails do "email already exists" else nil end
+      disable_save = if email_error != nil  do :true else :false end
+        {:noreply, socket
+        |>assign(:changeset, changeset)
+        |>assign(:email_error, email_error)
+      |>assign(:disable_save, disable_save)}
+
+
   end
 end

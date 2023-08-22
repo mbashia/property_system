@@ -22,6 +22,11 @@ defmodule PropertySystem.Accounts do
       nil
 
   """
+
+  def get_emails() do
+    Repo.all(from u in User, select: u.email)
+  end
+
   def get_user_by_email(email) when is_binary(email) do
     Repo.get_by(User, email: email)
   end

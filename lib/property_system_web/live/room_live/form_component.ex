@@ -19,7 +19,6 @@ defmodule PropertySystemWeb.RoomLive.FormComponent do
       socket.assigns.room
       |> Rooms.change_room(room_params)
       |> Map.put(:action, :validate)
-      IO.inspect(changeset)
     {:noreply, assign(socket, :changeset, changeset)}
   end
 
