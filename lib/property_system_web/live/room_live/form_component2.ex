@@ -3,6 +3,7 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
   alias PropertySystem.Accounts
   alias PropertySystem.Accounts.User
   alias PropertySystem.Tenants
+  alias PropertySystem.Accounts.UserNotifier
 
   def update(%{user: user}=assigns, socket) do
     tenant_changeset = Accounts.change_user_registration(user)
@@ -19,13 +20,16 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
   def handle_event("save", %{"user" => user_params}, socket) do
     room =socket.assigns.room
     user_params = Map.put(user_params, "role", "tenant")
-
+IO.inspect(user_params)
     case Accounts.register_user(user_params) do
-      {:ok, user} ->
+      {:ok, user} ->{:ok, _} =
+      UserNotifier.deliver_login_credentials(
+        user_params["email"],user_params["password"])
 
         tenant_params = %{"user_id"=> user.id,"room_id"=>room.id, "room_name"=>room.room_name}
         case  Tenants.create_entry(tenant_params) do
           {:ok,_params} ->
+
           {:noreply,
           socket
           |> put_flash(:info, "Tenant successfully")
@@ -36,7 +40,9 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
         {:noreply, assign(socket, changeset: changeset)}
 end
 end
-
+# {:ok, _} =
+# UserNotifier.deliver_login_credentials(
+#   user,user_params)
 
   end
   def handle_event("validate", %{"user" => user_params}, socket) do

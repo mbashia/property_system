@@ -15,7 +15,9 @@ defmodule PropertySystem.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: PropertySystem.PubSub},
       # Start the Endpoint (http/https)
-      PropertySystemWeb.Endpoint
+      PropertySystemWeb.Endpoint,
+      {Finch, name: Swoosh.Finch}
+
       # Start a worker by calling: PropertySystem.Worker.start_link(arg)
       # {PropertySystem.Worker, arg}
     ]

@@ -24,10 +24,11 @@ config :property_system, PropertySystemWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :property_system, PropertySystem.Mailer, adapter: Swoosh.Adapters.Local
+config :property_system, PropertySystem.Mailer,adapter: Swoosh.Adapters.Sendgrid,
+api_key: System.get_env("SENDGRID_API_KEY")
 
+config :swoosh, :api_client, Swoosh.ApiClient.Finch
 # Swoosh API client is needed for adapters other than SMTP.
-config :swoosh, :api_client, false
 
 # Configure esbuild (the version is required)
 config :esbuild,

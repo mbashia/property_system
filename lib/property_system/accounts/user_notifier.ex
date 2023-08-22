@@ -8,7 +8,7 @@ defmodule PropertySystem.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"PropertySystem", "contact@example.com"})
+      |> from({"PropertySystem", "v.mbashia@gs1kenya.org"})
       |> subject(subject)
       |> text_body(body)
 
@@ -70,6 +70,28 @@ defmodule PropertySystem.Accounts.UserNotifier do
     You can change your email by visiting the URL below:
 
     #{url}
+
+    If you didn't request this change, please ignore this.
+
+    ==============================
+    """)
+  end
+  def deliver_login_credentials( email, password) do
+
+    deliver(email, "Update email instructions", """
+
+    ==============================
+
+    Hi #{email}
+    Your account has been created successfully.
+    Your login email and new password are:
+
+    Login Email:- #{email}
+
+    Password:- #{password}
+    You can visit settings to change password
+
+    Use this credentials to login at http://localhost:4000/users/log_in
 
     If you didn't request this change, please ignore this.
 
