@@ -20,6 +20,11 @@ defmodule PropertySystem.Rooms do
   def list_rooms do
     Repo.all(Room)
   end
+  def list_rooms_by_property_id(id)do
+        Repo.all(from r in Room, where: r.property_id == ^id)
+
+
+  end
 
   @doc """
   Gets a single room.

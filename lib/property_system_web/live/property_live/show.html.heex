@@ -22,6 +22,7 @@
       action={@live_action}
       property={@property}
       room={@room}
+      user = {@user}
       return_to={Routes.property_show_path(@socket, :show,@property)}
     />
   </.modal>
@@ -64,6 +65,22 @@
   </li>
 
 </ul>
+  <%= for room <- @property.rooms do %>
+      <tr >
+         <td><%= room.room_name %></td>
+        <td><%= room.rent_amount %></td>
+        <td><%= room.size %></td>
+        <td><%= room.description %></td>
+        <td><%= room.status %></td>
+        <td><%= room.floor_number %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.room_show_path(@socket, :show, room) %></span>
+          <span><%= live_patch "Edit", to: Routes.room_index_path(@socket, :edit, room) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: room.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
 
 <span><%= live_patch "Edit", to: Routes.property_show_path(@socket, :edit, @property), class: "button" %></span> |
 <span><%= live_redirect "Back", to: Routes.property_index_path(@socket, :index) %></span>

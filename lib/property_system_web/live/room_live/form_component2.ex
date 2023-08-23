@@ -46,8 +46,6 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
             {:noreply, assign(socket, changeset: changeset)}
         end
     end
-
-    
   end
 
   def handle_event("validate", %{"user" => user_params}, socket) do

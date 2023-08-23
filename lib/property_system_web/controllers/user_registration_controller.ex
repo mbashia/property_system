@@ -10,8 +10,6 @@ defmodule PropertySystemWeb.UserRegistrationController do
     render(conn, "new.html", changeset: changeset)
   end
 
-
-
   def create(conn, %{"user" => user_params}) do
     user_params = Map.put(user_params, "role", "landlord")
 
@@ -31,6 +29,4 @@ defmodule PropertySystemWeb.UserRegistrationController do
         render(conn, "new.html", changeset: changeset)
     end
   end
-
-
 end

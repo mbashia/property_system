@@ -45,7 +45,7 @@ defmodule PropertySystemWeb.RoomLive.FormComponent do
     # property_id = socket.assigns.property_id
     # IO.inspect(property_id)
     room_params = Map.put(room_params, "property_id", socket.assigns.property.id)
-
+    room_params = Map.put(room_params, "user_id", socket.assigns.user.id)
     case Rooms.create_room(room_params) do
       {:ok, _room} ->
         {:noreply,

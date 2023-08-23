@@ -3,10 +3,16 @@ defmodule PropertySystemWeb.RoomLive.Index do
 
   alias PropertySystem.Rooms
   alias PropertySystem.Rooms.Room
+  alias PropertySystem.Accounts
+  alias PropertySystem.Propertys
+
+
 
   @impl true
 
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
+    user = Accounts.get_user_by_session_token(session["user_token"])
+
     {:ok,
      socket
      |> assign(:rooms, list_rooms())}

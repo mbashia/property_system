@@ -20,11 +20,11 @@ defmodule PropertySystem.Propertys do
   def list_propertys do
     Repo.all(Property)
   end
+
   def list_propertys_by_id(id) do
-    Repo.all(from p in Property, where: p.user_id == ^id)
-
-
+   properties = Repo.all(from p in Property, where: p.user_id == ^id)
   end
+
   @doc """
   Gets a single property.
 
@@ -39,7 +39,10 @@ defmodule PropertySystem.Propertys do
       ** (Ecto.NoResultsError)
 
   """
-  def get_property!(id), do: Repo.get!(Property, id)
+  def get_property!(id) do ()
+  Repo.get!(Property, id)
+  |>Repo.preload(:rooms)
+  end
 
   @doc """
   Creates a property.

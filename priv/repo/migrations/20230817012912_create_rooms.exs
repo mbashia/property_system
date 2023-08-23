@@ -9,6 +9,7 @@ defmodule PropertySystem.Repo.Migrations.CreateRooms do
       add :description, :text
       add :status, :string
       add :floor_number, :integer
+      add :user_id, :integer
       add :property_id, :integer
 
       timestamps()

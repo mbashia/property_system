@@ -2,6 +2,7 @@ defmodule PropertySystem.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias PropertySystem.Propertys.Property
+  alias PropertySystem.Rooms.Room
   alias PropertySystem.Tenants.Tenant
 
   schema "users" do
@@ -11,6 +12,7 @@ defmodule PropertySystem.Accounts.User do
     field :confirmed_at, :naive_datetime
     field :role, :string
     has_many :propertys, Property
+    has_many :rooms, Room
     has_many :tenants, Tenant
 
     timestamps()

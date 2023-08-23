@@ -2,6 +2,7 @@ defmodule PropertySystem.Rooms.Room do
   use Ecto.Schema
   import Ecto.Changeset
   alias PropertySystem.Propertys.Property
+  alias PropertySytem.Accounts.User
   alias PropertySystem.Tenants.Tenant
 
   schema "rooms" do
@@ -11,6 +12,8 @@ defmodule PropertySystem.Rooms.Room do
     field :room_name, :string
     field :size, :float
     field :status, :string
+    belongs_to :user, User, foreign_key: :user_id
+
     belongs_to :property, Property, foreign_key: :property_id
     has_many :tenants, Tenant
 
@@ -26,7 +29,8 @@ defmodule PropertySystem.Rooms.Room do
       :description,
       :status,
       :floor_number,
-      :property_id
+      :property_id,
+      :user_id
     ])
     |> validate_required([
       :room_name,
@@ -35,7 +39,8 @@ defmodule PropertySystem.Rooms.Room do
       :description,
       :status,
       :floor_number,
-      :property_id
+      :property_id,
+      :user_id
     ])
   end
 end
