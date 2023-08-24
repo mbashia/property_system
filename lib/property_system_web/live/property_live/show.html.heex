@@ -22,6 +22,20 @@
       action={@live_action}
       property={@property}
       room={@room}
+      current_user = {@current_user}
+      return_to={Routes.property_show_path(@socket, :show,@property)}
+    />
+  </.modal>
+<% end %>
+<%= if @live_action in [:add_manager] do %>
+  <.modal return_to={Routes.property_show_path(@socket, :show,@property)}>
+    <.live_component
+      module={PropertySystemWeb.PropertyLive.ManagerComponent}
+      id={@property.id}
+      title={@page_title}
+      action={@live_action}
+      property={@property}
+      room={@room}
       user = {@user}
       return_to={Routes.property_show_path(@socket, :show,@property)}
     />
@@ -29,7 +43,8 @@
 <% end %>
 
 
-<span><%= live_patch "add Room", to: Routes.property_show_path(@socket, :add_room , @property.id) %></span>
+<span><%= live_patch "add Room", to: Routes.property_show_path(@socket, :add_room , @property) %></span> |<span><%= live_patch "add manager", to: Routes.property_show_path(@socket, :add_manager, @property) %></span>
+
 
 
 <ul>

@@ -79,6 +79,8 @@ defmodule PropertySystemWeb.Router do
 
     live "/propertys/:id", PropertyLive.Show, :show
     live "/propertys/:id/add_room", PropertyLive.Show, :add_room
+    live "/property/:id/add_manager", PropertyLive.Show, :add_manager
+
 
     live "/propertys/:id/show/edit", PropertyLive.Show, :edit
     live "/maintenance_requests", Maintenance_requestLive.Index, :index
@@ -93,6 +95,7 @@ defmodule PropertySystemWeb.Router do
     live "/rooms/:id", RoomLive.Show, :show
     live "/rooms/:id/show/edit", RoomLive.Show, :edit
     live "/rooms/:id/add_tenant", RoomLive.Show, :add_tenant
+
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update

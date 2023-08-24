@@ -1,0 +1,25 @@
+<div><h5>wazaa</h5>
+ <.form
+    let={f}
+    for={@manager_changeset}
+    id="room-form"
+    phx-target={@myself}
+    phx-submit="save"
+    phx-change = "validate"
+    
+   >
+
+
+  <%= label f, :email %>
+  <%= email_input f, :email, required: true %>
+  <div style="color:red;"><%=@email_error%></div>
+
+  <%= label f, :password %>
+  <%= password_input f, :password, required: true %>
+  <%= error_tag f, :password %>
+<div>
+      <%= submit "Save", phx_disable_with: "Saving...", disabled: @disable_save%>
+    </div>
+  </.form>
+  </div>
+
