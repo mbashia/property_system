@@ -64,6 +64,15 @@ defmodule PropertySystemWeb.Router do
     post "/users/register", UserRegistrationController, :create
 
     get "/users/log_in", UserSessionController, :new
+    get "/managers/log_in", UserSessionController, :newmanager
+    post "/managers/log_in", UserSessionController, :createmanager
+
+
+
+    get "/tenants/log_in", UserSessionController, :newtenant
+    post "/tenants/log_in", UserSessionController, :createtenant
+
+
     post "/users/log_in", UserSessionController, :create
     get "/users/reset_password", UserResetPasswordController, :new
     post "/users/reset_password", UserResetPasswordController, :create
@@ -97,7 +106,7 @@ defmodule PropertySystemWeb.Router do
     live "/rooms/:id/add_tenant", RoomLive.Show, :add_tenant
 
     live "/tenants",TenantLive.Index, :index
-    
+
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email

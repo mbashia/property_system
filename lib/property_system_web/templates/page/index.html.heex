@@ -1,1 +1,6 @@
-this is the first page it will be updated shortly please use url to navigate
+this is the first page it will be updated shortly please use url to navigate  |
+    <li><%= link "Log in as landlord", to: Routes.user_session_path(@conn, :new) %></li>
+      <li><%= link "Log in as manager", to: Routes.user_session_path(@conn, :createmanager) %></li>
+
+  <li><%= link "Log in tenant", to: Routes.user_session_path(@conn, :createtenant) %></li>
+
