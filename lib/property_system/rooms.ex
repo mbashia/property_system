@@ -40,7 +40,11 @@ defmodule PropertySystem.Rooms do
       ** (Ecto.NoResultsError)
 
   """
-  def get_room!(id), do: Repo.get!(Room, id)
+  def get_room!(id) do
+    Repo.get!(Room, id)
+    |>Repo.preload(:property)
+  end
+
 
   @doc """
   Creates a room.

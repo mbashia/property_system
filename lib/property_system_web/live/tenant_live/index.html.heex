@@ -1,0 +1,21 @@
+<div> 
+<span style = "display:block;"><%= live_patch "New Maintenance request", to: Routes.maintenance_request_index_path(@socket, :new) %></span>
+<div>
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.tenant_index_path(@socket, :index)}>
+    <.live_component
+      module={PropertySystemWeb.Maintenance_requestLive.FormComponent}
+      id={@maintenance_request.id || :new}
+      title={@page_title}
+      action={@live_action}
+      maintenance_request={@maintenance_request}
+      tenant_room = {@tenant_room}
+      current_tenant = {@current_tenant}
+      return_to={Routes.tenant_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+<%= @tenant_room.room_name %>
+
+</div>
+</div>_

@@ -3,10 +3,19 @@ defmodule PropertySystemWeb.Maintenance_requestLive.Index do
 
   alias PropertySystem.Maintenance_requests
   alias PropertySystem.Maintenance_requests.Maintenance_request
+  alias PropertySystem.Accounts
+  alias PropertySystem.Tenants
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, :maintenance_requests, list_maintenance_requests())}
+  def mount(_params, session, socket) do
+    current_tenant =  Accounts.get_user_by_session_token(session["user_token"])
+tenant_room = Tenants.get_room_by_tenant_id(current_tenant.id)
+IO.inspect(tenant_room)
+{:ok,
+socket
+|>assign(:current_tenant, current_tenant)
+|>assign(:tenant_room, tenant_room)
+|>assign(:maintenance_requests, list_maintenance_requests())}
   end
 
   @impl true

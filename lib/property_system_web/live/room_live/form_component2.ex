@@ -18,8 +18,8 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
 
   def handle_event("save", %{"user" => user_params}, socket) do
     room = socket.assigns.room
+    current_user_id = socket.assigns.current_user.id
     user_params = Map.put(user_params, "role", "tenant")
-    IO.inspect(user_params)
 
     case Accounts.register_user(user_params) do
       {:ok, user} ->
@@ -32,24 +32,27 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
         tenant_params = %{
           "user_id" => user.id,
           "room_id" => room.id,
-          "room_name" => room.room_name
+          "landlord_id" => current_user_id,
+          "property_id" =>room.property.id
         }
 
         case Tenants.create_entry(tenant_params) do
           {:ok, _params} ->
             {:noreply,
              socket
-             |> put_flash(:info, "Tenant successfully")
+             |> put_flash(:info, "Tenant added successfully")
              |> push_redirect(to: socket.assigns.return_to)}
 
           {:error, %Ecto.Changeset{} = changeset} ->
             {:noreply, assign(socket, changeset: changeset)}
         end
+        {:error, %Ecto.Changeset{} = changeset} ->
+          {:noreply, assign(socket, changeset: changeset)}
+
     end
   end
 
   def handle_event("validate", %{"user" => user_params}, socket) do
-    IO.inspect(user_params["email"])
 
     changeset =
       socket.assigns.user

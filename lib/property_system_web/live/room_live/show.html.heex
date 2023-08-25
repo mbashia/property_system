@@ -22,6 +22,7 @@
       action={@live_action}
       room={@room}
       user = {@user}
+      current_user = {@current_user}
       
 
       return_to={Routes.room_show_path(@socket, :show, @room)}
@@ -60,7 +61,7 @@
     <strong>Floor number:</strong>
     <%= @room.floor_number %>
   </li>
-
+ 
 </ul>
 
 <span><%= live_patch "Edit", to: Routes.room_show_path(@socket, :edit, @room), class: "button" %></span> |

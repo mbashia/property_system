@@ -98,4 +98,26 @@ defmodule PropertySystem.Accounts.UserNotifier do
     ==============================
     """)
   end
+  def deliver_manager_credentials(email, password, house) do
+    deliver(email, "Update email instructions", """
+
+    ==============================
+
+    Hi #{email}
+    Your account has been created successfully and you have been added as the manager of #{house}
+    Your login email and new password are:
+
+    Login Email:- #{email}
+
+    Password:- #{password}
+    You can visit settings to change password
+
+    Use this credentials to login at http://localhost:4000/users/log_in
+
+    If you didn't request this change, please ignore this.
+
+    ==============================
+    """)
+  end
+
 end

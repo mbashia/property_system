@@ -96,7 +96,8 @@ defmodule PropertySystemWeb.Router do
     live "/rooms/:id/show/edit", RoomLive.Show, :edit
     live "/rooms/:id/add_tenant", RoomLive.Show, :add_tenant
 
-
+    live "/tenants",TenantLive.Index, :index
+    
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email

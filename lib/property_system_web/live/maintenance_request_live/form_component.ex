@@ -44,6 +44,12 @@ defmodule PropertySystemWeb.Maintenance_requestLive.FormComponent do
   end
 
   defp save_maintenance_request(socket, :new, maintenance_request_params) do
+    IO.write("socket assigns starts here")
+    IO.inspect(maintenance_request_params)
+    maintenance_request_params = Map.put(maintenance_request_params, "user_id", socket.assigns.current_tenant.id)
+    maintenance_request_params = Map.put(maintenance_request_params, "room_id", socket.assigns.tenant_room.id)
+    maintenance_request_params = Map.put(maintenance_request_params, "property_id", socket.assigns.tenant_room.property.id)
+    IO.inspect(maintenance_request_params)
     case Maintenance_requests.create_maintenance_request(maintenance_request_params) do
       {:ok, _maintenance_request} ->
         {:noreply,

@@ -6,6 +6,9 @@ defmodule PropertySystem.Repo.Migrations.CreateMaintenanceRequests do
       add :request_date, :date
       add :description, :text
       add :status, :string
+      add  :user_id, :integer
+      add :property_id, :integer
+      add :room_id, :integer
 
       timestamps()
     end

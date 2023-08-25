@@ -43,7 +43,6 @@ defmodule PropertySystemWeb.RoomLive.FormComponent do
 
   defp save_room(socket, :add_room, room_params) do
     # property_id = socket.assigns.property_id
-    # IO.inspect(property_id)
     # room_params = Map.put(room_params, "property_id", socket.assigns.property.id)
     # room_params = Map.put(room_params, "user_id", socket.assigns.current_user.id)
     room_params = room_params

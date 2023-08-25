@@ -42,7 +42,7 @@ defmodule PropertySystemWeb.PropertyLive.FormComponent do
 
   defp save_property(socket, :new, property_params) do
     property_params = Map.put(property_params, "user_id", socket.assigns.user.id)
-    
+
     case Propertys.create_property(property_params) do
       {:ok, _property} ->
         {:noreply,

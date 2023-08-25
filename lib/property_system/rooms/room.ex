@@ -4,7 +4,7 @@ defmodule PropertySystem.Rooms.Room do
   alias PropertySystem.Propertys.Property
   alias PropertySytem.Accounts.User
   alias PropertySystem.Tenants.Tenant
-
+alias PropertySystem.Maintenance_requests.Maintenance_request
   schema "rooms" do
     field :description, :string
     field :floor_number, :integer
@@ -16,6 +16,7 @@ defmodule PropertySystem.Rooms.Room do
 
     belongs_to :property, Property, foreign_key: :property_id
     has_many :tenants, Tenant
+    has_many :maintenance_requests, Maintenance_request
 
     timestamps()
   end

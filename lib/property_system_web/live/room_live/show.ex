@@ -3,10 +3,13 @@ defmodule PropertySystemWeb.RoomLive.Show do
 
   alias PropertySystem.Rooms
   alias PropertySystem.Accounts.User
+  alias PropertySystem.Accounts
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, socket}
+  def mount(_params, session, socket) do
+    current_user = Accounts.get_user_by_session_token(session["user_token"])
+    {:ok, socket
+           |>assign(:current_user, current_user)}
   end
 
   @impl true

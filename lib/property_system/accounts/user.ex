@@ -4,6 +4,8 @@ defmodule PropertySystem.Accounts.User do
   alias PropertySystem.Propertys.Property
   alias PropertySystem.Rooms.Room
   alias PropertySystem.Tenants.Tenant
+  alias PropertySystem.Maintenance_requests.Maintenance_request
+
 
   schema "users" do
     field :email, :string
@@ -14,6 +16,7 @@ defmodule PropertySystem.Accounts.User do
     has_many :propertys, Property
     has_many :rooms, Room
     has_many :tenants, Tenant
+    has_many :maintenance_request, Maintenance_request
 
     timestamps()
   end

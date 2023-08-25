@@ -1,14 +1,17 @@
 <h1>Listing Maintenance requests</h1>
 
 <%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.maintenance_request_index_path(@socket, :index)}>
+  <.modal return_to={Routes.tenant_index_path(@socket, :index)}>
     <.live_component
       module={PropertySystemWeb.Maintenance_requestLive.FormComponent}
       id={@maintenance_request.id || :new}
       title={@page_title}
       action={@live_action}
       maintenance_request={@maintenance_request}
-      return_to={Routes.maintenance_request_index_path(@socket, :index)}
+       tenant_room = {@tenant_room}
+      current_tenant = {@current_tenant}
+     
+      return_to={Routes.tenant_index_path(@socket, :index)}
     />
   </.modal>
 <% end %>

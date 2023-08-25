@@ -10,8 +10,11 @@ defmodule PropertySystem.Repo.Migrations.CreatePropertys do
       add :size, :float
       add :description, :text
       add :user_id, :integer
+      add :manager_id, :integer, default: 0
 
       timestamps()
     end
+    create index(:propertys, [:user_id])
+
   end
 end
