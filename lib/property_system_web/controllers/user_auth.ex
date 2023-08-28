@@ -34,7 +34,7 @@ defmodule PropertySystemWeb.UserAuth do
         |> put_session(:user_token, token)
         |> put_session(:live_socket_id, "users_sessions:#{Base.url_encode64(token)}")
         |> maybe_write_remember_me_cookie(token, params)
-        |> redirect(to: user_return_to || signed_in_path(conn))
+        |> redirect(to: signed_in_path(conn))
         "tenant" ->
           conn
         |> renew_session()
@@ -178,7 +178,7 @@ defmodule PropertySystemWeb.UserAuth do
 
   defp maybe_store_return_to(conn), do: conn
 
-  defp signed_in_path(_conn), do: "/"
+  defp signed_in_path(_conn), do: "/landlords"
   defp signed_in_tenant_path(_conn), do: "/tenants"
   defp signed_in_manager_path(_conn), do: "/managers"
 

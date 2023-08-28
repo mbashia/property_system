@@ -23,6 +23,7 @@ defmodule PropertySystem.Propertys do
 
   def list_propertys_by_id(id) do
    properties = Repo.all(from p in Property, where: p.user_id == ^id)
+   properties
   end
 
   @doc """

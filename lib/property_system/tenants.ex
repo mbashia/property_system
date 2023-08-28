@@ -15,6 +15,9 @@ defmodule PropertySystem.Tenants do
   def change_tenant(%Tenant{} = tenant, attrs \\ %{}) do
     Tenant.changeset(tenant, attrs)
   end
+  def list_tenants do
+    Repo.all(Tenant)
+  end
 
   def get_room_by_tenant_id(id) do
    room= Repo.one(from t in Tenant, where: t.user_id == ^id)

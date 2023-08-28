@@ -1,1 +1,15 @@
-<div>this is the div</div>
+<div>
+
+this is the div
+
+
+landlords properties
+
+    <%=for property <- @propertys do %>
+      <p style = "display:block ;background-color:red;"><%=property.name%></p>
+      <% end %>
+
+       <%=for tenant <- @tenants do %>
+      <p style = "display:block ;background-color:red;"><%=tenant.id%></p>
+      <% end %>
+</div>

@@ -98,6 +98,8 @@ defmodule PropertySystemWeb.Router do
 
     live "/tenants",TenantLive.Index, :index
     live "/managers",ManagerLive.Index, :index
+    live "/landlords",LandlordLive.Index, :index
+
 
 
     get "/users/settings", UserSettingsController, :edit
