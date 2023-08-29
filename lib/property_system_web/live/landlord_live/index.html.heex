@@ -10,6 +10,6 @@ landlords properties
       <% end %>
 
        <%=for tenant <- @tenants do %>
-      <p style = "display:block ;background-color:red;"><%=tenant.id%></p>
+      <p style = "display:block ;background-color:red;"><%=tenant.user.email%></p>
       <% end %>
 </div>

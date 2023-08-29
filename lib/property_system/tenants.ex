@@ -17,6 +17,7 @@ defmodule PropertySystem.Tenants do
   end
   def list_tenants do
     Repo.all(Tenant)
+    |>Repo.preload(:user)
   end
 
   def get_room_by_tenant_id(id) do
