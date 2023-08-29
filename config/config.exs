@@ -17,6 +17,15 @@ config :property_system, PropertySystemWeb.Endpoint,
   pubsub_server: PropertySystem.PubSub,
   live_view: [signing_salt: "SfckCC6U"]
 
+
+  config :tailwind, version: "3.3.3", default: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
+  ]
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

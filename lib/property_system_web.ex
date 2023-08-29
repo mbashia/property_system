@@ -50,6 +50,14 @@ defmodule PropertySystemWeb do
       unquote(view_helpers())
     end
   end
+  def landlord_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {PropertySystemWeb.LayoutView, "landlord.html"}
+
+      unquote(view_helpers())
+    end
+  end
 
   def live_component do
     quote do
