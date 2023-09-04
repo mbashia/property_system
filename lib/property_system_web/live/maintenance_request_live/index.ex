@@ -8,14 +8,15 @@ defmodule PropertySystemWeb.Maintenance_requestLive.Index do
 
   @impl true
   def mount(_params, session, socket) do
-    current_tenant =  Accounts.get_user_by_session_token(session["user_token"])
-tenant_room = Tenants.get_room_by_tenant_id(current_tenant.id)
-IO.inspect(tenant_room)
-{:ok,
-socket
-|>assign(:current_tenant, current_tenant)
-|>assign(:tenant_room, tenant_room)
-|>assign(:maintenance_requests, list_maintenance_requests())}
+    current_tenant = Accounts.get_user_by_session_token(session["user_token"])
+    tenant_room = Tenants.get_room_by_tenant_id(current_tenant.id)
+    IO.inspect(tenant_room)
+
+    {:ok,
+     socket
+     |> assign(:current_tenant, current_tenant)
+     |> assign(:tenant_room, tenant_room)
+     |> assign(:maintenance_requests, list_maintenance_requests())}
   end
 
   @impl true

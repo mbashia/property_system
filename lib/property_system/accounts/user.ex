@@ -6,7 +6,6 @@ defmodule PropertySystem.Accounts.User do
   alias PropertySystem.Tenants.Tenant
   alias PropertySystem.Maintenance_requests.Maintenance_request
 
-
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true

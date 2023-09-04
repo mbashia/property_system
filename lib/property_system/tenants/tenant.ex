@@ -10,7 +10,6 @@ defmodule PropertySystem.Tenants.Tenant do
     belongs_to :room, Room, foreign_key: :room_id
     field :landlord_id, :integer
     field :property_id, :integer
-
   end
 
   def changeset(tenant, attrs) do

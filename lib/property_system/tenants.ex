@@ -15,15 +15,16 @@ defmodule PropertySystem.Tenants do
   def change_tenant(%Tenant{} = tenant, attrs \\ %{}) do
     Tenant.changeset(tenant, attrs)
   end
+
   def list_tenants do
     Repo.all(Tenant)
-    |>Repo.preload(:user)
+    |> Repo.preload(:user)
   end
 
   def get_room_by_tenant_id(id) do
-   room= Repo.one(from t in Tenant, where: t.user_id == ^id)
-   IO.write("room starts here")
-   IO.inspect(room.room_id)
-   Rooms.get_room!(room.room_id)
+    room = Repo.one(from t in Tenant, where: t.user_id == ^id)
+    IO.write("room starts here")
+    IO.inspect(room.room_id)
+    Rooms.get_room!(room.room_id)
   end
 end

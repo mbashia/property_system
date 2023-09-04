@@ -27,6 +27,7 @@ defmodule PropertySystemWeb.UserAuth do
   def log_in_user(conn, user, params \\ %{}) do
     token = Accounts.generate_user_session_token(user)
     user_return_to = get_session(conn, :user_return_to)
+
     case user.role do
       "landlord" ->
         conn
@@ -35,26 +36,26 @@ defmodule PropertySystemWeb.UserAuth do
         |> put_session(:live_socket_id, "users_sessions:#{Base.url_encode64(token)}")
         |> maybe_write_remember_me_cookie(token, params)
         |> redirect(to: signed_in_path(conn))
-        "tenant" ->
-          conn
+
+      "tenant" ->
+        conn
         |> renew_session()
         |> put_session(:user_token, token)
         |> put_session(:live_socket_id, "users_sessions:#{Base.url_encode64(token)}")
         |> maybe_write_remember_me_cookie(token, params)
         |> redirect(to: signed_in_tenant_path(conn))
+
       "manager" ->
         conn
         |> renew_session()
         |> put_session(:user_token, token)
         |> put_session(:live_socket_id, "users_sessions:#{Base.url_encode64(token)}")
         |> maybe_write_remember_me_cookie(token, params)
-        |> redirect(to:  signed_in_manager_path(conn))
+        |> redirect(to: signed_in_manager_path(conn))
 
       _ ->
         IO.puts("Weather condition unknown.")
     end
-
-
   end
 
   defp maybe_write_remember_me_cookie(conn, token, %{"remember_me" => "true"}) do
@@ -181,5 +182,4 @@ defmodule PropertySystemWeb.UserAuth do
   defp signed_in_path(_conn), do: "/landlords"
   defp signed_in_tenant_path(_conn), do: "/tenants"
   defp signed_in_manager_path(_conn), do: "/managers"
-
 end

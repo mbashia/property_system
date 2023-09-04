@@ -20,10 +20,9 @@ defmodule PropertySystem.Rooms do
   def list_rooms do
     Repo.all(Room)
   end
-  def list_rooms_by_property_id(id)do
-        Repo.all(from r in Room, where: r.property_id == ^id)
 
-
+  def list_rooms_by_property_id(id) do
+    Repo.all(from r in Room, where: r.property_id == ^id)
   end
 
   @doc """
@@ -42,9 +41,8 @@ defmodule PropertySystem.Rooms do
   """
   def get_room!(id) do
     Repo.get!(Room, id)
-    |>Repo.preload(:property)
+    |> Repo.preload(:property)
   end
-
 
   @doc """
   Creates a room.

@@ -52,7 +52,6 @@ defmodule PropertySystem.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:finch, "~> 0.8"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
-
     ]
   end
 

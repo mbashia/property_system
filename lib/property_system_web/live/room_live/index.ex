@@ -6,8 +6,6 @@ defmodule PropertySystemWeb.RoomLive.Index do
   alias PropertySystem.Accounts
   alias PropertySystem.Propertys
 
-
-
   @impl true
 
   def mount(_params, session, socket) do

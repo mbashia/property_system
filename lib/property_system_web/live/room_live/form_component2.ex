@@ -33,7 +33,7 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
           "user_id" => user.id,
           "room_id" => room.id,
           "landlord_id" => current_user_id,
-          "property_id" =>room.property.id
+          "property_id" => room.property.id
         }
 
         case Tenants.create_entry(tenant_params) do
@@ -46,14 +46,13 @@ defmodule PropertySystemWeb.RoomLive.FormComponent2 do
           {:error, %Ecto.Changeset{} = changeset} ->
             {:noreply, assign(socket, changeset: changeset)}
         end
-        {:error, %Ecto.Changeset{} = changeset} ->
-          {:noreply, assign(socket, changeset: changeset)}
 
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, changeset: changeset)}
     end
   end
 
   def handle_event("validate", %{"user" => user_params}, socket) do
-
     changeset =
       socket.assigns.user
       |> Accounts.change_user_registration(user_params)

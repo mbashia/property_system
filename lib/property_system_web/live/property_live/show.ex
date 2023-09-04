@@ -3,18 +3,18 @@ defmodule PropertySystemWeb.PropertyLive.Show do
 
   alias PropertySystem.Propertys
   alias PropertySystem.Rooms.Room
-  alias  PropertySystem.Accounts
-  alias  PropertySystem.Accounts.User
+  alias PropertySystem.Accounts
+  alias PropertySystem.Accounts.User
 
   @impl true
   def mount(_params, session, socket) do
     current_user = Accounts.get_user_by_session_token(session["user_token"])
-    {:ok, socket
-             |> assign(:room, %Room{})
-             |>assign(:current_user, current_user)
-             |>assign(:user, %User{})
 
-  }
+    {:ok,
+     socket
+     |> assign(:room, %Room{})
+     |> assign(:current_user, current_user)
+     |> assign(:user, %User{})}
   end
 
   @impl true
@@ -30,5 +30,4 @@ defmodule PropertySystemWeb.PropertyLive.Show do
 
   defp page_title(:add_room), do: "Add Room"
   defp page_title(:add_manager), do: "Add Manager"
-
 end

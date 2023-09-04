@@ -1,15 +1,26 @@
-<div>
-
-this is the div
+<div class = "ml-[18%]"> 
 
 
-landlords properties
+<div class = "flex flex-row  flex-wrap pt-4 " >
 
-    <%=for property <- @propertys do %>
-      <p style = "display:block ;background-color:red;"><%=property.name%></p>
-      <% end %>
+    <div class = "w-[30%] bg-white m-4 h-[150px] rounded-2xl flex flex-col justify-center items-center  ">
+    <p class = " poppins-bold text-[#02183d] text-2xl">properties</p>
+    
+    <p class = "poppins-regular"><%=length(@propertys)%></p>
+    <a href = "#"> click here to view more details</a>
+    
+    </div>
+    <div class = "w-[30%] bg-white m-4 h-[150px] rounded-2xl   ">heyy</div>
+    <div class = "w-[30%] bg-white m-4 h-[150px] rounded-2xl   "> heyy</div>
+        <div class = "w-[30%] bg-white m-4 h-[150px] rounded-2xl   "> heyy</div>
+                <div class = "w-[30%] bg-white m-4 h-[150px] rounded-2xl   "> heyy</div>
 
-       <%=for tenant <- @tenants do %>
-      <p style = "display:block ;background-color:red;"><%=tenant.user.email%></p>
-      <% end %>
+        <div class = "w-[30%] bg-white m-4 h-[150px] rounded-2xl   "> heyy</div>
+
+
+
+</div>
+
+
+
 </div>

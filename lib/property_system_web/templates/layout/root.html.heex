@@ -9,23 +9,28 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body>
-    <header>
-      <section class="container">
-        <nav>
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-          <%= render "_user_menu.html", assigns %>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src={Routes.static_path(@conn, "/images/phoenix.png")} alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
+  <body class = "bg-[#edf6fd]">
+  <div class = "fixed top-0 left-0 h-[100%] rounded bg-white">
+   <div class = "flex flex-col w-[200px] ">
+   <div  class = "mt-4 mx-2 w-[150px]"> <img  src = {"/images/mbashia.png"}></div>
+   <div class  = "m-2 p-2 text-gray-500"> <a href = "#"> Dashboard</a></div>
+      <div class  = "m-2 p-2 text-gray-500"> <a href = "#"> Properties</a></div>
+
+   <div class  = "m-2 p-2 text-gray-500"> <a href = "#"> Rent</a></div>
+
+   <div class  = "m-2 p-2 text-gray-500"> <a href = "#"> Messages</a></div>
+
+   <div class  = "m-2 p-2 text-gray-500"> <a href = "#"> Tenants </a></div>
+
+   <div class  = "m-2 p-2 text-gray-500"> <a href = "#"> Staff</a></div>
+
+   <div class  = "m-2 p-2 text-gray-500"> <a href = "#"> Requests</a></div>
+
+    </div>
+   
+      
+
+ </div>
     <%= @inner_content %>
   </body>
 </html>

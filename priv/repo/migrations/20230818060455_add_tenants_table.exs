@@ -7,10 +7,8 @@ defmodule PropertySystem.Repo.Migrations.AddTenantsTable do
       add :room_id, :integer
       add :landlord_id, :integer
       add :property_id, :integer
-
-
     end
-    create index(:tenants, [:user_id])
 
+    create index(:tenants, [:user_id])
   end
 end

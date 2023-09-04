@@ -14,7 +14,7 @@ defmodule PropertySystem.Repo.Migrations.CreateRooms do
 
       timestamps()
     end
-    create index(:rooms, [:property_id])
 
+    create index(:rooms, [:property_id])
   end
 end

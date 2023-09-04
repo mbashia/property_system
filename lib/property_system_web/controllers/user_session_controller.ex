@@ -7,7 +7,6 @@ defmodule PropertySystemWeb.UserSessionController do
   def new(conn, _params) do
     render(conn, "new.html", error_message: nil)
   end
- 
 
   def create(conn, %{"user" => user_params}) do
     %{"email" => email, "password" => password} = user_params
@@ -19,7 +18,6 @@ defmodule PropertySystemWeb.UserSessionController do
       render(conn, "new.html", error_message: "Invalid email or password")
     end
   end
-
 
   def delete(conn, _params) do
     conn

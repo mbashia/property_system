@@ -98,6 +98,7 @@ defmodule PropertySystem.Accounts.UserNotifier do
     ==============================
     """)
   end
+
   def deliver_manager_credentials(email, password, house) do
     deliver(email, "Update email instructions", """
 
@@ -119,5 +120,4 @@ defmodule PropertySystem.Accounts.UserNotifier do
     ==============================
     """)
   end
-
 end

@@ -5,7 +5,6 @@ defmodule PropertySystem.Propertys.Property do
   alias PropertySystem.Rooms.Room
   alias PropertySystem.Maintenance_requests.Maintenance_request
 
-
   schema "propertys" do
     field :address, :string
     field :description, :string
@@ -25,7 +24,16 @@ defmodule PropertySystem.Propertys.Property do
   @doc false
   def changeset(property, attrs) do
     property
-    |> cast(attrs, [:name, :address, :type, :status, :size, :description, :user_id,:manager_id])
-    |> validate_required([:name, :address, :type, :status, :size, :description, :user_id,:manager_id])
+    |> cast(attrs, [:name, :address, :type, :status, :size, :description, :user_id, :manager_id])
+    |> validate_required([
+      :name,
+      :address,
+      :type,
+      :status,
+      :size,
+      :description,
+      :user_id,
+      :manager_id
+    ])
   end
 end

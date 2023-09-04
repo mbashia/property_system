@@ -14,7 +14,7 @@ defmodule PropertySystem.Repo.Migrations.CreatePropertys do
 
       timestamps()
     end
-    create index(:propertys, [:user_id])
 
+    create index(:propertys, [:user_id])
   end
 end

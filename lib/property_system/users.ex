@@ -3,11 +3,7 @@ defmodule PropertySystem.Users do
   import Ecto.Query, warn: false
   alias PropertySystem.Repo
 
-
-
-
   def get_manager(id) do
-    Repo.all(
-      from(u in User, where: u.id == ^id and u.role == ^"manager")
-    )  end
+    Repo.all(from(u in User, where: u.id == ^id and u.role == ^"manager"))
+  end
 end

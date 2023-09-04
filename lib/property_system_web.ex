@@ -50,6 +50,7 @@ defmodule PropertySystemWeb do
       unquote(view_helpers())
     end
   end
+
   def landlord_view do
     quote do
       use Phoenix.LiveView,
