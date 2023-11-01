@@ -31,3 +31,4 @@ defmodule PropertySystemWeb.RoomLive.Show do
   defp page_title(:edit), do: "Edit Room"
   defp page_title(:add_tenant), do: "add tenant"
 end
+ 

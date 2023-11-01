@@ -52,7 +52,13 @@ defmodule PropertySystem.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:finch, "~> 0.8"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:ex_fontawesome, "~> 0.7.0"}
+      {:ex_fontawesome, "~> 0.7.0"},
+      {:bumblebee, "~> 0.4.2"},
+  {:nx, "~> 0.6.1"},
+  {:exla, "~> 0.6.1"},
+  {:axon, "~> 0.6.0"},
+  {:kino, "~> 0.10.0"}
+
     ]
   end
 
